@@ -207,7 +207,7 @@ def load_host_profiles():
     load_profiles_for_class(HostProfile, "Host", profiles_path, "host")
 
     _host_profiles_loaded = True
-    _log_debug("Loaded %d host profiles" % len(_host_profiles))
+    _log_debug("Loaded %d host profiles", len(_host_profiles))
 
 
 def write_host_profiles(force=False):
@@ -224,8 +224,8 @@ def write_host_profiles(force=False):
         try:
             hp.write_profile(force)
         except Exception as e:
-            _log_warn("Failed to write HostProfile(machine_id='%s'): %s" %
-                      (hp.disp_machine_id, e))
+            _log_warn("Failed to write HostProfile(machine_id='%s'): %s",
+                      hp.disp_machine_id, e)
 
 
 def min_host_id_width():
@@ -383,16 +383,16 @@ def match_host_profile(entry):
         load_host_profiles()
 
     _log_debug("Attempting to match profile for BootEntry(title='%s', "
-               "version='%s') with machine_id='%s'" %
-               (entry.title, entry.version, entry.machine_id))
+               "version='%s') with machine_id='%s'",
+               entry.title, entry.version, entry.machine_id)
 
     # Attempt to match by uname pattern
     for hp in _host_profiles:
         if hp.machine_id == entry.machine_id:
             _log_debug("Matched BootEntry(version='%s', boot_id='%s') "
-                       "to HostProfile(name='%s', machine_id='%s')" %
-                       (entry.version, entry.disp_boot_id, hp.host_name,
-                        hp.machine_id))
+                       "to HostProfile(name='%s', machine_id='%s')",
+                       entry.version, entry.disp_boot_id, hp.host_name,
+                       hp.machine_id)
             return hp
 
     return None
